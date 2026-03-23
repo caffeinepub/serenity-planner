@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Bloom pastel palette — OKLCH raw L C H */
+    --background: 0.951 0.018 83;
+    --foreground: 0.178 0.018 55;
+    --card: 0.974 0.012 83;
+    --card-foreground: 0.178 0.018 55;
+    --popover: 0.974 0.012 83;
+    --popover-foreground: 0.178 0.018 55;
+    --primary: 0.717 0.064 22;
+    --primary-foreground: 0.974 0.012 83;
+    --secondary: 0.883 0.028 65;
+    --secondary-foreground: 0.178 0.018 55;
+    --muted: 0.958 0.016 83;
+    --muted-foreground: 0.468 0.028 50;
+    --accent: 0.762 0.055 22;
+    --accent-foreground: 0.974 0.012 83;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.872 0.023 65;
+    --input: 0.872 0.023 65;
+    --ring: 0.762 0.055 22;
+
+    /* Custom bloom tokens */
+    --cream: 0.951 0.018 83;
+    --surface: 0.958 0.016 83;
+    --blush: 0.762 0.055 22;
+    --blush-dark: 0.717 0.064 22;
+    --beige: 0.883 0.028 65;
+    --text-primary: 0.178 0.018 55;
+    --text-secondary: 0.468 0.028 50;
+
+    /* chart placeholders */
+    --chart-1: 0.762 0.055 22;
+    --chart-2: 0.883 0.028 65;
+    --chart-3: 0.717 0.064 22;
+    --chart-4: 0.872 0.023 65;
+    --chart-5: 0.951 0.018 83;
+    --sidebar: 0.958 0.016 83;
+    --sidebar-foreground: 0.178 0.018 55;
+    --sidebar-primary: 0.717 0.064 22;
+    --sidebar-primary-foreground: 0.974 0.012 83;
+    --sidebar-accent: 0.883 0.028 65;
+    --sidebar-accent-foreground: 0.178 0.018 55;
+    --sidebar-border: 0.872 0.023 65;
+    --sidebar-ring: 0.762 0.055 22;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Lato", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────────────────────── */
+@keyframes float-heart {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes heart-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.3) translateY(-10px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-22px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-32px);
+  }
+}
+
+@keyframes toast-slide {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Warm page gradient */
+  .bloom-bg {
+    background: linear-gradient(160deg, #f4efe6 0%, #f9eef0 60%, #f7f2ea 100%);
+    min-height: 100vh;
+  }
+
+  .bloom-shadow {
+    box-shadow: 0 2px 12px 0 oklch(0.717 0.064 22 / 0.1), 0 1px 4px 0
+      oklch(0.717 0.064 22 / 0.06);
+  }
+  .bloom-shadow-lg {
+    box-shadow: 0 8px 32px 0 oklch(0.717 0.064 22 / 0.12), 0 2px 8px 0
+      oklch(0.717 0.064 22 / 0.08);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px 0 oklch(0.717 0.064 22 / 0.14), 0 2px 8px 0
+      oklch(0.717 0.064 22 / 0.08);
+    background-color: oklch(0.978 0.014 10 / 1);
+  }
+
+  .task-complete {
+    @apply line-through opacity-50 scale-95 transition-all duration-300;
+  }
+
+  /* Floating ambient hearts */
+  .floating-heart {
+    animation: float-heart infinite ease-in-out;
+  }
+
+  /* Cute soft toast */
+  .bloom-toast {
+    background: linear-gradient(135deg, #f9e8e5, #fdf3f0);
+    box-shadow: 0 4px 20px 0 oklch(0.717 0.064 22 / 0.18), 0 1px 6px 0
+      oklch(0.717 0.064 22 / 0.1);
+    border: 1px solid oklch(0.872 0.023 65);
+    white-space: nowrap;
+    max-width: 320px;
+  }
+
+  /* Greeting banner */
+  .greeting-banner {
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    background: linear-gradient(90deg, #f9e8e5 0%, #fdf3f0 50%, #f9e8e5 100%);
+    border-top: 1px solid oklch(0.872 0.023 65 / 0.5);
+  }
+
+  /* Comfort modal */
+  .comfort-modal {
+    background: linear-gradient(145deg, #fdf0ed, #fbf0f5, #fdf3f0);
+    box-shadow: 0 20px 60px 0 oklch(0.717 0.064 22 / 0.2), 0 4px 16px 0
+      oklch(0.717 0.064 22 / 0.12);
+  }
+
+  /* Comfort button */
+  .bloom-comfort-btn {
+    background: linear-gradient(135deg, #f9e8e5, #fdf3f0);
+    border: 1px solid oklch(0.872 0.023 65);
+    box-shadow: 0 2px 12px 0 oklch(0.717 0.064 22 / 0.14);
+  }
+  .bloom-comfort-btn:hover {
+    box-shadow: 0 4px 18px 0 oklch(0.717 0.064 22 / 0.2);
+  }
+}
